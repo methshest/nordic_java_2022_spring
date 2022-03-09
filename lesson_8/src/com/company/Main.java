@@ -1,9 +1,9 @@
 package com.company;
 
-import com.company.shop.Product;
 import com.company.shop.ProductAtShop;
 import com.company.shop.ProductTypeEnum;
 import com.company.shop.Shop;
+import com.company.shop.exception.ProductNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,13 @@ public class Main {
                     break;
                 case 3:
                     System.out.print("Введите название продукта: ");
-                    shop.buy(in.nextInt());
+                    try {
+                        shop.buy(in.nextInt());
+                    } catch (ProductNotFoundException ex) {
+                        System.out.println(ex);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                    }
                     break;
             }
             outputForBuyer();

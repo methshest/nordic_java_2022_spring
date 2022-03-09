@@ -1,5 +1,7 @@
 package com.company.shop;
 
+import com.company.shop.exception.ProductNotFoundException;
+
 import java.util.List;
 
 public class Shop implements IBuyer, ISeller {
@@ -14,7 +16,7 @@ public class Shop implements IBuyer, ISeller {
     }
 
     @Override
-    public Product buy(long id) {
+    public Product buy(long id) throws ProductNotFoundException {
         for (ProductAtShop product : products) {
             if (product.compare(id)) {
                 product.buy();
@@ -24,7 +26,7 @@ public class Shop implements IBuyer, ISeller {
                 return product;
             }
         }
-        return null;
+        throw new ProductNotFoundException("Продукт не был найден");
     }
 
     @Override
