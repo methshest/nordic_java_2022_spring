@@ -37,6 +37,12 @@ public class ProductAtShop extends Product {
         }
     }
 
+
+    public void addCount(int count) {
+        this.count += count;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
