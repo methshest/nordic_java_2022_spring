@@ -2,5 +2,8 @@ package com.company.shop;
 
 public interface ISeller {
     void add(ProductAtShop product);
-    //Изменения какие-то
+    void updateProduct(ProductAtShop product,long id);
+
+
+    void getInfoId(long id);
 }

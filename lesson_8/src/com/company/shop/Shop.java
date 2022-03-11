@@ -1,5 +1,6 @@
 package com.company.shop;
 
+
 import com.company.shop.exception.ProductNotFoundException;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class Shop implements IBuyer, ISeller {
     }
 
     @Override
-    public Product buy(long id) throws ProductNotFoundException {
+    public Product buy(long id) throws ClassNotFoundException {
         for (ProductAtShop product : products) {
             if (product.compare(id)) {
                 product.buy();
@@ -37,6 +38,15 @@ public class Shop implements IBuyer, ISeller {
             }
         }
     }
+    public void getInfoId(long id){
+        for (ProductAtShop product : products) {
+            if (product.compare(id)) {
+                System.out.println(product);
+            }
+        }
+    }
+
+
 
     public String getName() {
         return name;
@@ -55,7 +65,32 @@ public class Shop implements IBuyer, ISeller {
     }
 
     @Override
-    public void add(ProductAtShop product) {
+    public  void add(ProductAtShop product) {
         //найти удостовериться что такого продукта еще нет, иначе именить значение count
+        if(this.products.contains(product)){
+            for (ProductAtShop prd : products){
+                if (this.products.equals(prd)){
+                    prd.addCount(product.getCount());
+                }
+            }
+        }else{
+            this.products.add(product);
+        }
     }
-}
+
+    @Override
+    public void updateProduct(ProductAtShop product, long id) {
+        for (ProductAtShop prod : products){
+                if (product.compare(id)){
+                    this.products.set(3,product);
+                }else {
+                    System.out.println("Нет такого продукта");
+            }
+        }
+        }
+
+
+    }
+
+
+
